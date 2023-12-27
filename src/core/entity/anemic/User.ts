@@ -1,10 +1,17 @@
+import { Errors } from "@/core/constants/Errors"
+
 export class User {
     constructor(
         private id: number,
         private name: string,
         private email: string,
         private password?: string
-    ){}
+    ){
+        this.setId(id)
+        this.setName(name)
+        this.setEmail(email)
+        if (password) this.setPassword(password)
+    }
 
     getId(): number {
         return this.id
@@ -35,6 +42,7 @@ export class User {
     }
 
     setPassword(password: string): void {
+        if (password.length < 6) throw new Error(Errors.INVALID_PASSWORD)
         this.password = password
     }
 }
