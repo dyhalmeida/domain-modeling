@@ -17,10 +17,15 @@ describe('Anemic User', () => {
         expect(user.getId()).toBe(-999)
     })
 
-    it('Should allow user with invalid email', () => {
+    it('Should allow user with valid email', () => {
         const user = builderUser()
-        user.setEmail('!@#$%') 
-        expect(user.getEmail()).toBe('!@#$%')
+        user.setEmail('ping.pong@mail.com') 
+        expect(user.getEmail()).toBe('ping.pong@mail.com')
+    })
+
+    it('Should thorow an invalid email erorr if the email is invalid', () => {
+        const user = builderUser()
+        expect(() => user.setEmail('ping@pong@..com')).toThrow(Errors.INVALID_EMAIL)
     })
 
     it('Should allow user with password valid', () => {

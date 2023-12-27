@@ -1,4 +1,5 @@
 import { Errors } from "@/core/constants/Errors"
+import { Validator } from "@/core/utils/Validator"
 
 export class User {
     constructor(
@@ -34,6 +35,7 @@ export class User {
     }
 
     setEmail(email: string): void {
+        if (!Validator.isValidEmail(email)) throw new Error(Errors.INVALID_EMAIL)
         this.email = email
     }
 
