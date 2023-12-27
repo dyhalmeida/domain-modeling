@@ -6,25 +6,25 @@ describe('Anemic User', () => {
 
     it('Should allow unnamed user', () => {
         const user = builderUser()
-        user.name = ''
-        expect(user.name).toBe('')
+        user.setName('')
+        expect(user.getName()).toBe('')
     })
 
     it('Should allow user with negative id', () => {
         const user = builderUser()
-        user.id = -999
-        expect(user.id).toBe(-999)
+        user.setId(-999)
+        expect(user.getId()).toBe(-999)
     })
 
     it('Should allow user with invalid email', () => {
         const user = builderUser()
-        user.email = '!@#$%'
-        expect(user.email).toBe('!@#$%')
+        user.setEmail('!@#$%') 
+        expect(user.getEmail()).toBe('!@#$%')
     })
 
     it('Should allow user with invalid password', () => {
         const user = builderUser()
-        user.password = 'a'
-        expect(user.password).toBe('a')
+        user.setPassword('a')
+        expect(user.getPassword()).toBe('a')
     })
 })
