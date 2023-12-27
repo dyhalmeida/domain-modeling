@@ -3,48 +3,48 @@ import { Validator } from "@/core/utils/Validator"
 
 export class User {
     constructor(
-        private id: number,
-        private name: string,
-        private email: string,
-        private password?: string
+        private _id: number,
+        private _name: string,
+        private _email: string,
+        private _password?: string
     ){
-        this.setId(id)
-        this.setName(name)
-        this.setEmail(email)
-        if (password) this.setPassword(password)
+        this.id = _id
+        this.name = _name
+        this.email = _email
+        this.password = _password
     }
 
-    getId(): number {
-        return this.id
+    get id(): number {
+        return this._id
     }
 
-    setId(id: number): void {
-        this.id = id
+    set id(id: number) {
+        this._id = id
     }
 
-    getName(): string {
-        return this.name
+    get name(): string {
+        return this._name
     }
 
-    setName(name: string): void {
-        this.name = name
+    set name(name: string) {
+        this._name = name
     }
 
-    getEmail(): string {
-        return this.email
+    get email(): string {
+        return this._email
     }
 
-    setEmail(email: string): void {
+    set email(email: string) {
         if (!Validator.isValidEmail(email)) throw new Error(Errors.INVALID_EMAIL)
-        this.email = email
+        this._email = email
     }
 
-    getPassword(): string | undefined {
-        return this.password
+    get password(): string | undefined {
+        return this._password
     }
 
-    setPassword(password: string): void {
-        if (password.length < 6) throw new Error(Errors.INVALID_PASSWORD)
-        this.password = password
+    set password(password: string | undefined) {
+        if (!password || password.length < 6) throw new Error(Errors.INVALID_PASSWORD)
+        this._password = password
     }
 }
