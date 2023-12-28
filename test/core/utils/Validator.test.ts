@@ -40,4 +40,16 @@ describe('Validator', () => {
         expect(errorMessage).toBe(Errors.EMPTY)
     })
 
+    it('Should return isValid true and errorMessage null, if the value is less than max length', () => {
+        const { isValid, errorMessage } = Validator.isLessThan('Any text', 10, Errors.INVALID_LESS_THAN)
+        expect(isValid).toBeTruthy()
+        expect(errorMessage).toBeNull()
+    })
+
+    it('Should return isValid false and errorMessage with an error message, if the value is not less than max length', () => {
+        const { isValid, errorMessage } = Validator.isLessThan('Any text', 6, Errors.INVALID_LESS_THAN)
+        expect(isValid).toBeFalsy()
+        expect(errorMessage).toBe(Errors.INVALID_LESS_THAN)
+    })
+
 })

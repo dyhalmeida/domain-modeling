@@ -1,5 +1,19 @@
 export class Validator {
 
+    static isLessThan(value: string | any[], maxLength: number, errorMessage: string) {
+        if (value.length < maxLength) {
+            return {
+                isValid: true,
+                errorMessage: null
+            }
+        }
+
+        return {
+            isValid: false,
+            errorMessage
+        }
+    }
+
     static isNotEmpty(value: string, errorMessage: string) {
         const invalid = {
             isValid: false,

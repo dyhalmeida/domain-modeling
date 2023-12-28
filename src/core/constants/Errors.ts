@@ -3,4 +3,5 @@ export const Errors = {
     'INVALID_EMAIL': 'INVALID_EMAIL',
     'NULL_OR_UNDEFINED': 'NULL_OR_UNDEFINED',
     'EMPTY': 'EMPTY',
+    'INVALID_LESS_THAN': 'INVALID_LESS_THAN'
 } as const
