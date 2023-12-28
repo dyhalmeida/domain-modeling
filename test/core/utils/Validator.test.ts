@@ -22,4 +22,22 @@ describe('Validator', () => {
         expect(result.errorMessage).toBe(Errors.NULL_OR_UNDEFINED)
     })
 
+    it('Should return isValid true and errorMessage null, if the value is not empty', () => {
+        const { isValid, errorMessage } = Validator.isNotEmpty('Any value', Errors.EMPTY)
+        expect(isValid).toBeTruthy()
+        expect(errorMessage).toBeNull()
+    })
+
+    it('Should return isValid false and errorMessage with an error message, if the value is empty', () => {
+        const { isValid, errorMessage } = Validator.isNotEmpty('   ', Errors.EMPTY)
+        expect(isValid).toBeFalsy()
+        expect(errorMessage).toBe(Errors.EMPTY)
+    })
+
+    it('Should return isValid false and errorMessage with an error message, if the value is null', () => {
+        const { isValid, errorMessage } = Validator.isNotEmpty(null as any as string, Errors.EMPTY)
+        expect(isValid).toBeFalsy()
+        expect(errorMessage).toBe(Errors.EMPTY)
+    })
+
 })

@@ -1,5 +1,22 @@
 export class Validator {
 
+    static isNotEmpty(value: string, errorMessage: string) {
+        const invalid = {
+            isValid: false,
+            errorMessage
+        }
+        if (!Validator.isNotNull(value, errorMessage).isValid) {
+            return invalid
+        }
+
+        if (value.trim() === '') return invalid
+
+        return {
+            isValid: true,
+            errorMessage: null
+        }
+    }
+
     static isNotNull(value: any, errorMessage: string) {
         if (value !== null && value !== undefined) {
             return {
