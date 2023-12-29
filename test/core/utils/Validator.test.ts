@@ -52,4 +52,20 @@ describe('Validator', () => {
         expect(errorMessage).toBe(Errors.INVALID_LESS_THAN)
     })
 
+    it('Should return an array of errors', () => {
+        const errors = Validator.joinErrors(
+            Validator.isNotEmpty('', Errors.EMPTY).errorMessage,
+            Validator.isNotNull(null, Errors.NULL_OR_UNDEFINED).errorMessage
+        )
+        expect(errors).toStrictEqual([Errors.EMPTY, Errors.NULL_OR_UNDEFINED])
+    })
+
+    it('Should return null if there are no errors', () => {
+        const errors = Validator.joinErrors(
+            Validator.isNotEmpty('any', Errors.EMPTY).errorMessage,
+            Validator.isNotNull(10, Errors.NULL_OR_UNDEFINED).errorMessage
+        )
+        expect(errors).toBeNull()
+    })
+
 })

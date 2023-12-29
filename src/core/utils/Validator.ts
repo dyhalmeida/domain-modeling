@@ -1,5 +1,10 @@
 export class Validator {
 
+    static joinErrors(...errors: (string | null)[]) {
+        const filteredErrors = errors.filter(error => error != null) as string[]
+        return filteredErrors.length > 0 ? filteredErrors : null
+    }
+
     static isLessThan(value: string | any[], maxLength: number, errorMessage: string) {
         if (value.length < maxLength) {
             return {
