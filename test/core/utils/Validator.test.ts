@@ -79,4 +79,17 @@ describe('Validator', () => {
         expect(isValid).toBeFalsy()
         expect(errorMessage).toBe(Errors.INVALID_GREATER_THAN)
     })
+
+    it('Should throw an error if the regex is not valid', () => {
+        const { isValid, errorMessage } = Validator.isValidRegex('@dyhalmeida_5g', /^[a-zA-ZÀ-ú\s]+$/, Errors.NAME_WITH_INVALID_CHARACTERS)
+        expect(isValid).toBeFalsy()
+        expect(errorMessage).toBe(Errors.NAME_WITH_INVALID_CHARACTERS)
+    })
+
+    it('Should not throw an error if the regex is valid', () => {
+        const { isValid, errorMessage } = Validator.isValidRegex('dyhalmeida', /^[a-zA-ZÀ-ú\s]+$/, Errors.NAME_WITH_INVALID_CHARACTERS)
+        expect(isValid).toBeTruthy()
+        expect(errorMessage).toBeNull()
+    })
+
 })

@@ -68,4 +68,18 @@ export class Validator {
             /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
         return regex.test(email)
     }
+
+    static isValidRegex(value: string, regex: RegExp, errorMessage: string) {
+        if (regex.test(value)) {
+            return {
+                isValid: true,
+                errorMessage: null
+            }
+        }
+        return {
+            isValid: false,
+            errorMessage
+        }
+    }
+    
 }
