@@ -16,4 +16,12 @@ export class Id {
     static get new() {
         return new Id()
     }
+
+    isEqual(id: Id) {
+        return this.value === id?.value
+    }
+
+    isDifferent(id: Id) {
+        return this.value !== id?.value
+    }
 }
