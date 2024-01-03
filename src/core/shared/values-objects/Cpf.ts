@@ -4,20 +4,20 @@ const TOTAL_DIGITS = 11
 
 export class Cpf {
 
-    readonly _value: string
+    readonly value: string
 
     constructor(value: string) {
-        this._value = value.replace(/\D/g, '')
-        const { isValid, errorMessage } = Cpf.isValid(this._value)
+        this.value = value.replace(/\D/g, '')
+        const { isValid, errorMessage } = Cpf.isValid(this.value)
         if (!isValid) throw new Error(Errors.INVALID_CPF)
     }
 
     get formatted() {
-        return this._value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
+        return this.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
     }
 
     get checkersDigits() {
-        return this._value.slice(9)
+        return this.value.slice(9)
     }
 
     static isValid(value: string) {
