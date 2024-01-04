@@ -1,28 +1,20 @@
-import { Cpf } from "@/core/shared/values-objects/Cpf";
-import { Id } from "@/core/shared/values-objects/Id";
 import { PeopleName } from "@/core/shared/values-objects/PeopleName";
+import { Cpf } from "@/core/shared/values-objects/Cpf";
+import { Entity, IEntityProps } from "../Entity/Entity";
 
-export interface IPeopleProps {
-    id?: string
+export interface IPeopleProps extends IEntityProps{
     name: string
     cpf: string
 }
 
-export class People {
+export class People extends Entity<People, IPeopleProps> {
     
-    readonly id: Id
     readonly name: PeopleName
     readonly cpf: Cpf
 
-    constructor(private props: IPeopleProps) {
-        this.id = new Id(props.id)
+    constructor(props: IPeopleProps) {
+        super(props)
         this.name = new PeopleName(props.name)
         this.cpf = new Cpf(props.cpf)
-        
-        this.props = {...props, id: this.id.value }
-    }
-
-    clone(props: Partial<IPeopleProps>) {
-        return new People({ ...this.props, ...props })
     }
 }
