@@ -1,4 +1,5 @@
 import { Errors } from "@/core/constants/Errors";
+import { CpfRegion } from "./CpfRegion";
 
 const TOTAL_DIGITS = 11
 
@@ -18,6 +19,10 @@ export class Cpf {
 
     get checkersDigits() {
         return this.value.slice(9)
+    }
+
+    get region(): CpfRegion {
+        return CpfRegion.getByCpf(this.value)
     }
 
     static isValid(value: string) {
