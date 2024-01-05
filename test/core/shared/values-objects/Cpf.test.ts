@@ -1,5 +1,6 @@
 import { Errors } from "@/core/constants/Errors"
 import { Cpf } from "@/core/shared/values-objects/Cpf"
+import { CpfRegion } from "@/core/shared/values-objects/CpfRegion"
 
 describe('Cpf', () => {
 
@@ -41,6 +42,12 @@ describe('Cpf', () => {
 
     it('Deve retonar o CPF formatado', () => {
         expect(new Cpf('39451422021').formatted).toBe('394.514.220-21')
+    })
+
+    it('Should get the region by cpf', () => {
+        expect(new Cpf('572.891.254-01').region).toBe(CpfRegion.AL_PB_PE_RN)
+        expect(new Cpf('445.863.735-55').region.code).toBe(5)
+        expect(new Cpf('515.227.877-47').region.states).toStrictEqual(['ES', 'RJ'])
     })
 
 })
